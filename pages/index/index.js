@@ -10,6 +10,8 @@ Page({
     question:'',
     outputItems: [],
     hasUserInfo: false,
+    scrollTop: 0,
+    srollHeight: 400
     // canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -18,9 +20,23 @@ Page({
       url: '../logs/logs'
     })
   },
+  onShow: function(){
+    console.log('onShowed')
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var height = res.windowHeight ;   //footerpannelheight为底部组件的高度
+        console.log("height:"+height)
+        that.setData({
+          srollHeight: height - 34
+        });
+      }
+    })
+
+  },
   onLoad: function () {
-    console.log('app.globalData.userInfo:' + app.globalData.userInfo)
-    console.log('canIUse' + this.data.canIUse);
+    // console.log('app.globalData.userInfo:' + app.globalData.userInfo)
+    // console.log('canIUse' + this.data.canIUse);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,8 +66,8 @@ Page({
       })
     }
 
-    console.log('userInfo:' + this.data.userInfo);
-    console.log('nickName:' + this.data.userInfo.nickName);
+    // console.log('userInfo:' + this.data.userInfo);
+    // console.log('nickName:' + this.data.userInfo.nickName);
     app.robot.ask('你好', 'test', 'weixin')
       .then(d => {
         var arr = new Array();
@@ -76,14 +92,14 @@ Page({
     })
   },
   sendMsg: function(){
-    console.log(this.data.question)
     var question = this.data.question;
     var questionArr = new Array();
     questionArr = {"content":question,"nickName":this.data.userInfo.nickName}
     var arr = new Array();
     arr = { "position": 'right', "data": questionArr }
     this.setData({
-      outputItems: this.data.outputItems.concat(arr)
+      outputItems: this.data.outputItems.concat(arr),
+      scrollTop: this.data.scrollTop + 1000
     })
     
     app.robot.ask(question, app.globalData.userId, 'weixin')
@@ -92,8 +108,20 @@ Page({
         var arr = new Array();
         arr = { "position": 'left', "data": d }
         this.setData({
-          outputItems: this.data.outputItems.concat(arr)
-        })
+          outputItems: this.data.outputItems.concat(arr),
+          scrollTop: this.data.scrollTop +1000
+        }) 
       })
+
+  },
+  // 获取容器高度，使页面滚动到容器底部
+  pageScrollToBottom: function () {
+    wx.createSelectorQuery().select('#outputPanel').boundingClientRect(function (rect) {
+      console.log(rect)
+      // 使页面滚动到底部
+      wx.pageScrollTo({
+        scrollTop: 1000
+      })
+    }).exec()
   }
 })

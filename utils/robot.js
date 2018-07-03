@@ -7,7 +7,7 @@ function fetchApi(type, params) {
 
 function ask(question,userId,platform){
   const params = {question:question,userId:userId,platform:platform}
-  console.log('params:'+params)
+  // console.log('params:'+params)
   return fetchApi('ask.action', Object.assign(params, { format: 'json' })).then(res => res.data)
 }
 

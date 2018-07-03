@@ -1,11 +1,12 @@
 <!--index.wxml-->
 <view class="mainPanel">
-  <view class='outputPanel'>
+  <!-- <scroll-view></scroll-view> -->
+  <scroll-view class='outputPanel' style='height:{{ srollHeight }}px'  scroll-y="true" scroll-top="{{ scrollTop }}">
     <view class='outputArea'>
        <template is="outputItem" data="{{ outputItems }}"></template> 
     </view>
     
-  </view>
+  </scroll-view>
   <view class='inputPanel'>
     <view class='inputArea'>
       <input class='inputText' type='text' placeholder='请输入您的问题' bindinput='questionInput'></input>
