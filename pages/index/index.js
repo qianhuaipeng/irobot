@@ -85,7 +85,7 @@ Page({
     this.setData({
       outputItems: this.data.outputItems.concat(arr)
     })
-    console.log(this.data.outputItems)
+    
     app.robot.ask(question, app.globalData.userId, 'weixin')
       .then(d => {
         console.log(d)

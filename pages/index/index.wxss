@@ -2,67 +2,110 @@
 .outputPanel {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 94%; 
+  overflow-y: scroll; 
+  overflow-x: hidden;
+  background-color: #ebebeb;
 }
 
 .outputArea {
   position: absolute;
-  overflow-y: auto;
+  height: 100%;
+  width: 100%;
   top: 0rpx;
   font-size: 30rpx;
   display: block;
+  
 }
 
 .outputArea view {
   padding: 10rpx;
+
 }
 
 .inputPanel {
-  position: absolute;
+  position: fixed;
   bottom: 0rpx;
   width: 100%;
 }
 
 .inputArea {
   display: inline-block;
+  width: 75%;
+  padding-right: 40rpx;
 }
+
 .inputArea input {
-  width: 600rpx;
+  width: 100%;
   margin-left: 10rpx;
-  border: 1rpx;
-  
+  border:1px solid #c8cccf;
+  border-radius: 1px;
+  padding-right: 10rpx;
+  margin-right: 10rpx;
 }
 .btn {
   display: inline-block;
-  right: 0rpx;
-  background-color: green;
+  right: 0rpx;  
 }
 .btn button {
-  height: 80rpx;
-  width: 140rpx;
+  height: 70rpx;
+  width: 100%;
   text-align: center;
   font-size: 30rpx;
+  color: white;
   border-color: red;
-  border-radius: 1px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: green; 
 }
 
 .robot-chat {
-  /* float: left; */
-   word-wrap: break-word;
+  word-wrap: break-word;
   word-break: normal;
-  max-width: 100%; 
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  background-color: #fff;
+  width: 100%;
+   flex-direction: column; 
 }
 
+.robot-head {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+}
+
+.robot-head image {  
+  width: 60rpx;
+  height: 60rpx;
+}
+.robot-content {
+  display: inline-block;
+  max-width: 60%;
+  background-color: white;
+  border-radius: 10rpx;
+}
 .user-chat {
   word-wrap: break-word;
   word-break: normal;
-  max-width: 100%; 
-   display: flex; 
+  width: 100%; 
   flex-direction: column;
-  cursor: pointer;
-  background-color: #fff;
+  float: right;
+}
+
+.user-head {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  float: right;
+}
+
+.user-head image {  
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.user-content {
+  float: right;
+  display: inline-block;
+  max-width: 80%;
+  background-color: white;
+  border-radius: 10rpx;
 }

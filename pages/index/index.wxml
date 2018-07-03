@@ -2,20 +2,7 @@
 <view class="mainPanel">
   <view class='outputPanel'>
     <view class='outputArea'>
-      <!-- <view wx:for="{{ robotDatas }}" wx:key="item">
-          <view class='robot-chat'>
-            <text>机器人：</text>
-            <text>{{ item.content }}</text>
-          </view>
-      </view>
-
-      <view wx:for="{{ userDatas }}" wx:key="item">
-          <view class='user-chat'>
-            <text>{{ item.content }}</text>
-          </view>
-      </view> -->
        <template is="outputItem" data="{{ outputItems }}"></template> 
-      
     </view>
     
   </view>
@@ -28,21 +15,28 @@
     </view>
   </view>
 </view>
-
-
 <template name='outputItem'>
   <block wx:for="{{ outputItems }}" wx:key="item">
     <!-- <text>{{item.position}} 说是</text> -->
     <block wx:if="{{ item.position == 'left' }}">
       <view class='robot-chat'>
-        <text>机器人：</text>
-        <text>{{ item.data.content }}</text>
+        <view class='robot-head'>
+          <image src='../../images/robot-head.jpg'></image>
+        </view>
+        <view class='robot-content'>
+          <text>{{ item.data.content }}</text>
+        </view>
       </view>
     </block>
+
     <block wx:if="{{ item.position == 'right' }}">
       <view class='user-chat'>
-        <text class="userinfo-nickname">{{ item.data.nickName }}:</text>
-        <text>{{ item.data.content }}</text>
+        <view class='user-head'>
+          <image src='../../images/user-head.jpg'></image>
+        </view>
+        <view class='user-content'>
+          <text>{{ item.data.content }}</text>
+        </view>       
       </view>
     </block>
   </block>
