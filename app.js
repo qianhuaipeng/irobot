@@ -34,10 +34,6 @@ App({
             var openid = res.data.openid //返回openid
               // console.log('openid为' + openid);
               self.globalData.userId= openid
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userIdReadyCallback) {
-                this.userIdReadyCallback(res)
-              }
           }
         })
       }

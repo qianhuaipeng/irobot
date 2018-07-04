@@ -1,6 +1,5 @@
 <!--index.wxml-->
 <view class="mainPanel">
-  <!-- <scroll-view></scroll-view> -->
   <scroll-view class='outputPanel' style='height:{{ srollHeight }}px'  scroll-y="true" scroll-top="{{ scrollTop }}">
     <view class='outputArea'>
        <template is="outputItem" data="{{ outputItems }}"></template> 
@@ -9,7 +8,7 @@
   </scroll-view>
   <view class='inputPanel'>
     <view class='inputArea'>
-      <input class='inputText' type='text' placeholder='请输入您的问题' bindinput='questionInput'></input>
+      <input class='inputText' type='text' placeholder='请输入您的问题' placeholder-style='font-size:12px' bindinput='questionInput' value='{{ inputTxt }}'></input>
     </view>
     <view class='btn'>
       <button bindtap='sendMsg'>发送</button>
@@ -18,7 +17,6 @@
 </view>
 <template name='outputItem'>
   <block wx:for="{{ outputItems }}" wx:key="item">
-    <!-- <text>{{item.position}} 说是</text> -->
     <block wx:if="{{ item.position == 'left' }}">
       <view class='robot-chat'>
         <view class='robot-head'>

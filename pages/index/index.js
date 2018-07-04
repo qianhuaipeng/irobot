@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
+    inputTxt:'',
     userId:'',
     nickName:'',
     question:'',
@@ -28,13 +29,14 @@ Page({
         var height = res.windowHeight ;   //footerpannelheight为底部组件的高度
         console.log("height:"+height)
         that.setData({
-          srollHeight: height - 34
+          srollHeight: height - 40
         });
       }
     })
 
   },
   onLoad: function () {
+    console.log('onLoaded')
     // console.log('app.globalData.userInfo:' + app.globalData.userInfo)
     // console.log('canIUse' + this.data.canIUse);
     if (app.globalData.userInfo) {
@@ -68,7 +70,7 @@ Page({
 
     // console.log('userInfo:' + this.data.userInfo);
     // console.log('nickName:' + this.data.userInfo.nickName);
-    app.robot.ask('你好', 'test', 'weixin')
+    app.robot.ask('你好', app.globalData.userId, 'app')
       .then(d => {
         var arr = new Array();
         arr = {"position":'left',"data":d}
@@ -99,12 +101,13 @@ Page({
     arr = { "position": 'right', "data": questionArr }
     this.setData({
       outputItems: this.data.outputItems.concat(arr),
-      scrollTop: this.data.scrollTop + 1000
+      scrollTop: this.data.scrollTop + 1000,
+      inputTxt: ''
     })
     
-    app.robot.ask(question, app.globalData.userId, 'weixin')
+    app.robot.ask(question, app.globalData.userId, 'app')
       .then(d => {
-        console.log(d)
+        // console.log(d)
         var arr = new Array();
         arr = { "position": 'left', "data": d }
         this.setData({
@@ -113,15 +116,5 @@ Page({
         }) 
       })
 
-  },
-  // 获取容器高度，使页面滚动到容器底部
-  pageScrollToBottom: function () {
-    wx.createSelectorQuery().select('#outputPanel').boundingClientRect(function (rect) {
-      console.log(rect)
-      // 使页面滚动到底部
-      wx.pageScrollTo({
-        scrollTop: 1000
-      })
-    }).exec()
   }
 })
