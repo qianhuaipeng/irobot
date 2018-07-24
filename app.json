@@ -1,12 +1,14 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/comment/index",
+    "pages/out/out"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小i机器人",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "iRobot",
+    "navigationBarTextStyle": "black"
   }
 }

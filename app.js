@@ -32,7 +32,7 @@ App({
           },
           success: function (res) {
             var openid = res.data.openid //返回openid
-              // console.log('openid为' + openid);
+              console.log('openid为' + openid);
               self.globalData.userId= openid
           }
         })

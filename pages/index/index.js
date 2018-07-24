@@ -69,15 +69,8 @@ Page({
     }
 
     // console.log('userInfo:' + this.data.userInfo);
-    // console.log('nickName:' + this.data.userInfo.nickName);
-    app.robot.ask('你好', app.globalData.userId, 'app')
-      .then(d => {
-        var arr = new Array();
-        arr = {"position":'left',"data":d}
-        this.setData({
-          outputItems: this.data.outputItems.concat(arr)
-        })
-      })
+    // console.log('userId:' + app.globalData.userId);
+    this.welcome();
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -93,28 +86,54 @@ Page({
       question: e.detail.value
     })
   },
+  welcome: function(){
+    var arr = new Array();
+    arr = {"content":"你好，很高兴认识你！"}
+    this.showMessage("left",arr);
+  },
   sendMsg: function(){
     var question = this.data.question;
+    if(question == null || question == '') {
+      return;
+    }
     var questionArr = new Array();
     questionArr = {"content":question,"nickName":this.data.userInfo.nickName}
-    var arr = new Array();
-    arr = { "position": 'right', "data": questionArr }
-    this.setData({
-      outputItems: this.data.outputItems.concat(arr),
-      scrollTop: this.data.scrollTop + 1000,
-      inputTxt: ''
-    })
-    
+    this.showMessage('right',questionArr);
+    this.clearInputTxt()
+     
     app.robot.ask(question, app.globalData.userId, 'app')
       .then(d => {
         // console.log(d)
-        var arr = new Array();
-        arr = { "position": 'left', "data": d }
-        this.setData({
-          outputItems: this.data.outputItems.concat(arr),
-          scrollTop: this.data.scrollTop +1000
-        }) 
+        this.showMessage('left', d);
       })
 
+  },
+  showMessage: function(postion,data){
+    var arr = new Array();
+    arr = { "position": postion, "data": data }
+    this.setData({
+      outputItems: this.data.outputItems.concat(arr),
+      scrollTop: this.data.scrollTop + 500
+    }) 
+  },
+  toOtherPage: function (event) {
+    var type_ = event.currentTarget.dataset.type;
+    var title = event.currentTarget.dataset.title;
+    if(type_ == 'toH5'){
+      var url = event.currentTarget.dataset.url;
+      wx.navigateTo({
+        url: '../../pages/out/out?url=' + url,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../../pages/comment/index?title=' + title,
+      })
+    }
+    
+  },
+  clearInputTxt: function(){
+    this.setData({
+      inputTxt: ''
+    })
   }
 })

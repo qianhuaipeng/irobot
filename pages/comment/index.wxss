@@ -1,0 +1,6 @@
+.container{
+  font-size: 14px;
+  padding: 0 20rpx 20rpx 20rpx;
+  background-color: #ebebeb;
+  height: 100%;
+}

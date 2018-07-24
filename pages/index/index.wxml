@@ -2,7 +2,33 @@
 <view class="mainPanel">
   <scroll-view class='outputPanel' style='height:{{ srollHeight }}px'  scroll-y="true" scroll-top="{{ scrollTop }}">
     <view class='outputArea'>
-       <template is="outputItem" data="{{ outputItems }}"></template> 
+         <template is="outputItem" data="{{ outputItems }}"></template> 
+         
+          <!-- -->
+          <!-- <navigator url='../out/out' hover-class="none">
+            <view class="robot-imgtxt-chat">
+            <view class='robot-imgmsg'>
+              <view class='img-content'>
+                <image src="../../images/robot-head.jpg"></image>
+              </view>
+              <view class='text-content'>
+                <text>图文消息</text>
+              </view>
+            </view>
+          </view> 
+           </navigator> -->
+
+          
+          <view class="robot-imgtxt-chat" bindtap='toOtherPage' data-type='toH5' data-url='http://www.baidu.com'>
+            <view class='robot-imgmsg'>
+              <view class='img-content'>
+                <image src="../../images/robot-head.jpg"></image>
+              </view>
+              <view class='text-content'>
+                <text>图文消息图文消息</text>
+              </view>
+            </view>
+          </view>  
     </view>
     
   </scroll-view>
@@ -15,6 +41,7 @@
     </view>
   </view>
 </view>
+ 
 <template name='outputItem'>
   <block wx:for="{{ outputItems }}" wx:key="item">
     <block wx:if="{{ item.position == 'left' }}">
@@ -23,7 +50,15 @@
           <image src='../../images/robot-head.jpg'></image>
         </view>
         <view class='robot-content'>
-          <text>{{ item.data.content }}</text>
+          <view wx:if="{{ item.data.type == 15}}">
+              <text>{{ item.data.content }}</text>
+              <view>
+                <button class="toOtherPage" bindtap='toOtherPage' data-title='{{ item.data.object.title}}'>查看译文</button>
+              </view>  
+          </view>
+          <view wx:if="{{ item.data.type != 15}}">
+            <view>{{ item.data.content }}</view>
+          </view>
         </view>
       </view>
     </block>

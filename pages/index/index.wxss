@@ -18,7 +18,7 @@
 }
 
 .outputArea view {
-  padding: 10rpx;
+   /* padding: 10rpx;  */
 
 }
 
@@ -69,6 +69,36 @@
   flex-direction: column; 
   /* margin:10px 0px 10px 10px; */
   overflow:hidden;
+  padding: 15rpx;
+}
+
+.robot-imgtxt-chat {
+  width: 90%;
+  margin: 0 20px 20px 0;  
+  position: relative;
+  border-radius: 10rpx;
+   background: white; 
+  /* text-align: center; */
+  left: 5%;
+  right: 5%;
+  top: 20rpx;
+}
+.robot-imgmsg {
+  padding: 0px;
+  border-radius: 10rpx;
+}
+
+.text-content {
+  position: relative;
+  left: 20px;
+  height: 40px;
+}
+
+.img-content image {
+   /* padding: 10px; */
+   border-radius: 10rpx;
+  height: 300rpx;
+  width: 100%;
 }
 
 .robot-head {
@@ -79,8 +109,8 @@
 }
 
 .robot-head image {  
-  width: 60rpx;
-  height: 60rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 
 .robot-content {
@@ -91,7 +121,7 @@
   float: left;
   padding: 10px;
   margin-left: 10px;
-  margin-top:5px;
+  /* margin-top:5px; */
 }
 .user-chat {
   word-wrap: break-word;
@@ -101,6 +131,7 @@
   float: right;
   /* margin:5px 10px 15px 0px; */
   overflow:hidden;
+  padding: 20rpx;
 }
 
 .user-head {
@@ -110,8 +141,8 @@
 }
 
 .user-head image {  
-  width: 60rpx;
-  height: 60rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 
 .user-content {
@@ -120,6 +151,11 @@
   background-color: white;
   border-radius: 10rpx;
   margin-right:10px;
-  margin-top:5px;
+  /* margin-top:5px; */
   padding:10px;
+}
+
+.toOtherPage {
+  font-size: 12px;
+  width: 80px;
 }
