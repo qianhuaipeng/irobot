@@ -10,9 +10,11 @@ Page({
     nickName:'',
     question:'',
     outputItems: [],
+    imgtxtmsgSize:0,
     hasUserInfo: false,
     scrollTop: 0,
-    srollHeight: 400
+    srollHeight: 400,
+    flag: true
     // canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -88,25 +90,31 @@ Page({
   },
   welcome: function(){
     var arr = new Array();
-    arr = {"content":"你好，很高兴认识你！"}
+    arr = {"content":"Hi,My Precious！"}
     this.showMessage("left",arr);
   },
-  sendMsg: function(){
+  sendTextEx: function(){
     var question = this.data.question;
-    if(question == null || question == '') {
-      return;
-    }
+    this.sendMsg(question, true);
+  },
+  sendMsg: function(question, showQuestion){
     var questionArr = new Array();
     questionArr = {"content":question,"nickName":this.data.userInfo.nickName}
-    this.showMessage('right',questionArr);
-    this.clearInputTxt()
+    
+    if (showQuestion) {
+      this.showMessage('right', questionArr);
+    }
      
     app.robot.ask(question, app.globalData.userId, 'app')
       .then(d => {
-        // console.log(d)
         this.showMessage('left', d);
+        // if(d.type == 13) {
+        //   this.setData({
+        //     imgtxtmsgSize: d.imgtxtmsg.length
+        //   })
+        // }
       })
-
+    this.clearInputTxt()
   },
   showMessage: function(postion,data){
     var arr = new Array();
@@ -115,6 +123,38 @@ Page({
       outputItems: this.data.outputItems.concat(arr),
       scrollTop: this.data.scrollTop + 500
     }) 
+  },
+  relatedQuestion: function(event){
+    var question = event.currentTarget.dataset.question;
+    this.sendMsg(question,true);
+  },
+  faqvote: function(event){
+    var item = event.currentTarget.dataset.item; 
+    var content = event.currentTarget.dataset.content; 
+    var idx = event.currentTarget.dataset.idx; 
+    var option = event.currentTarget.dataset.option;
+    if(!item.click){
+      this.sendMsg(content, false);
+      var str;
+      if (option == 1) {
+        str = 'outputItems[' + idx + '].data.faqvote.solve_icon';
+        this.setData({
+          [str]: item.solve_icon_clicked
+        })
+      } else {
+        str = 'outputItems[' + idx + '].data.faqvote.unsolve_icon';
+        this.setData({
+          [str]: item.unsolve_icon_clicked
+        })
+      }
+
+      this.setData({
+        ['outputItems[' + idx + '].data.faqvote.click']: true
+      })
+    }
+    
+    
+    // console.log("faqvote: " + this.data.outputItems[idx].data.faqvote)
   },
   toOtherPage: function (event) {
     var type_ = event.currentTarget.dataset.type;
@@ -133,7 +173,8 @@ Page({
   },
   clearInputTxt: function(){
     this.setData({
-      inputTxt: ''
+      inputTxt: '',
+      question: ''
     })
   }
 })
