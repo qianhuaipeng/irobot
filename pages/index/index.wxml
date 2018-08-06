@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class="mainPanel">
-  <scroll-view class='outputPanel' style='height:{{ srollHeight }}px'  scroll-y="true" scroll-top="{{ scrollTop }}">
+  <scroll-view class='outputPanel' style='height:{{ srollHeight }}px' scroll-y="true" scroll-top="{{ scrollTop }}">
     <view class='outputArea'>
-          <template is="outputItem" data="{{ outputItems }}"></template>  
-            
+      <template is="outputItem" data="{{ outputItems }}"></template>
 
-        <!-- <view class="robot-chat">
+
+      <!-- <view class="robot-chat">
           <view class="robot-head">
             <image src="../../images/robot-head.jpg"></image>
           </view>
@@ -47,7 +47,7 @@
           </view>
         </view> -->
 
-            <!-- <view class="robot-imgtxt-chat" >
+      <!-- <view class="robot-imgtxt-chat" >
             <view class="robot-imgtxtmsg-content">
               <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='http://www.baidu.com'>
                 <view class='img-content'>
@@ -61,7 +61,7 @@
             </view>
           </view> -->
 
-          <!-- <view class="robot-imgtxt-chat">
+      <!-- <view class="robot-imgtxt-chat">
           <view class="robot-imgtxtmsg-content">
             <view class='robot-imgmsg'  bindtap='toOtherPage' data-type='toH5' data-url='http://www.baidu.com'>
               <view class='img-content'>
@@ -92,7 +92,7 @@
           </view>   -->
 
     </view>
-    
+
   </scroll-view>
   <view class='inputPanel'>
     <view class='inputArea'>
@@ -103,64 +103,64 @@
     </view>
   </view>
 </view>
- 
+
 <template name='outputItem'>
   <block wx:for="{{ outputItems }}" wx:for-item="outputItem" wx:key="item">
     <block wx:if="{{ outputItem.position == 'left' }}">
       <block wx:if="{{ outputItem.data.type == 13 }}">
-           <!-- <template is="imgtxtmsg" data="{{ outputItem , imgtxtmsgSize}}"></template>    -->
+        <!-- <template is="imgtxtmsg" data="{{ outputItem , imgtxtmsgSize}}"></template>    -->
 
-            <block wx:if="{{ outputItem.data.imgtxtmsg.length == 1}}">
-      <view class="robot-imgtxt-chat" >
-        <view class="robot-imgtxtmsg-content">
-            <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.data.imgtxtmsg[0].url}}'>
-              <view class='img-content'>
-                <image src="{{ item.data.imgtxtmsg[0].image }}"></image>
-              </view>
-              <view class='text-content'>
-                <text>{{ item.data.imgtxtmsg[0].title }}</text>
+        <block wx:if="{{ outputItem.data.imgtxtmsg.length == 1}}">
+          <view class="robot-imgtxt-chat">
+            <view class="robot-imgtxtmsg-content">
+              <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.data.imgtxtmsg[0].url}}'>
+                <view class='img-content'>
+                  <image src="{{ item.data.imgtxtmsg[0].image }}"></image>
+                </view>
+                <view class='text-content'>
+                  <text>{{ item.data.imgtxtmsg[0].title }}</text>
+                </view>
               </view>
             </view>
           </view>
-          </view>
-    </block>
-    <block wx:else>
-      <view class="robot-imgtxt-chat">
-        <view class="robot-imgtxtmsg-content">
-          <block wx:for="{{ outputItem.data.imgtxtmsg }}"  data="{{ imgtxtmsgSize }}" wx:key="item" wx:for-index="idx">
-            <!-- <text></text> -->
-            <block wx:if="{{ idx == 0 }}">
-              <view class='robot-imgmsg'  bindtap='toOtherPage' data-type='toH5' data-url='{{ item.url }}'>
-                <view class='img-content'>
-                  <image src="{{ item.image }}"></image>
-                </view>
-                <view class='text-content'>
-                  <text>{{ item.title }}</text>
-                </view>
-              </view>
-            </block>
-            <block wx:else>
-              <view class='robot-imgmsg-small'>
-                <view class='img-content-small'>
-                  <image src="{{ item.image }}"></image>
-                </view>
-                <view class='text-content-small'>
-                  <text>{{ item.title }}</text>
-                </view>
-              </view>
-              <!-- <text>{{ idx }} {{ outputItem.data.imgtxtmsg.length}}</text> -->
-              <block wx:if="{{ outputItem.data.imgtxtmsg.length-1 != idx}}">
-                <view class='split-content' ></view>   
-              </block>
-                        
-            </block>
-          </block>
-        </view>
-      </view>
-    </block>
+        </block>
+        <block wx:else>
+          <view class="robot-imgtxt-chat">
+            <view class="robot-imgtxtmsg-content">
+              <block wx:for="{{ outputItem.data.imgtxtmsg }}" data="{{ imgtxtmsgSize }}" wx:key="item" wx:for-index="idx">
+                <!-- <text></text> -->
+                <block wx:if="{{ idx == 0 }}">
+                  <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.url }}'>
+                    <view class='img-content'>
+                      <image src="{{ item.image }}"></image>
+                    </view>
+                    <view class='text-content'>
+                      <text>{{ item.title }}</text>
+                    </view>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class='robot-imgmsg-small'>
+                    <view class='img-content-small'>
+                      <image src="{{ item.image }}"></image>
+                    </view>
+                    <view class='text-content-small'>
+                      <text>{{ item.title }}</text>
+                    </view>
+                  </view>
+                  <!-- <text>{{ idx }} {{ outputItem.data.imgtxtmsg.length}}</text> -->
+                  <block wx:if="{{ outputItem.data.imgtxtmsg.length-1 != idx}}">
+                    <view class='split-content'></view>
+                  </block>
 
+                </block>
+              </block>
+            </view>
+          </view>
+        </block>
 
       </block>
+
       <block wx:else>
         <view class='robot-chat'>
           <view class='robot-head'>
@@ -168,19 +168,19 @@
           </view>
           <view class='robot-content'>
             <view wx:if="{{ outputItem.data.type == 15}}">
-                <text>{{ outputItem.data.content }}</text>
-                <view>
-                  <button class="toOtherPage" bindtap='toOtherPage' data-title='{{ outputItem.data.object.title}}'>查看译文</button>
-                </view>  
+              <text>{{ outputItem.data.content }}</text>
+              <view>
+                <button class="toOtherPage" bindtap='toOtherPage' data-title='{{ outputItem.data.object.title}}'>查看译文</button>
+              </view>
             </view>
             <view wx:if="{{ outputItem.data.type != 15}}">
               <text>{{ outputItem.data.content }}</text>
-              <template is="relatedQuestion" data="{{ outputItem }}"></template>   
-              <template is="faqvote" data="{{ outputItem ,index}}"></template> 
+              <template is="relatedQuestion" data="{{ outputItem }}"></template>
+              <template is="faqvote" data="{{ outputItem ,index}}"></template>
             </view>
           </view>
         </view>
-      </block>  
+      </block>
     </block>
 
     <block wx:if="{{ outputItem.position == 'right' }}">
@@ -190,76 +190,75 @@
         </view>
         <view class='user-content'>
           <text>{{ outputItem.data.content }}</text>
-        </view>       
+        </view>
       </view>
     </block>
   </block>
 </template>
 
 <template name="imgtxtmsg">
-    <block wx:if="{{ outputItem.data.imgtxtmsg.length == 1}}">
-      <view class="robot-imgtxt-chat" >
-        <view class="robot-imgtxtmsg-content">
-            <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.data.imgtxtmsg[0].url}}'>
-              <view class='img-content'>
-                <image src="{{ item.data.imgtxtmsg[0].image }}"></image>
-              </view>
-              <view class='text-content'>
-                <text>{{ item.data.imgtxtmsg[0].title }}</text>
-              </view>
-            </view>
+  <block wx:if="{{ outputItem.data.imgtxtmsg.length == 1}}">
+    <view class="robot-imgtxt-chat">
+      <view class="robot-imgtxtmsg-content">
+        <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.data.imgtxtmsg[0].url}}'>
+          <view class='img-content'>
+            <image src="{{ item.data.imgtxtmsg[0].image }}"></image>
           </view>
+          <view class='text-content'>
+            <text>{{ item.data.imgtxtmsg[0].title }}</text>
           </view>
-    </block>
-    <block wx:else>
-      <view class="robot-imgtxt-chat">
-        <view class="robot-imgtxtmsg-content">
-          <block wx:for="{{ outputItem.data.imgtxtmsg }}" wx:for-item="mmm" data="{{ imgtxtmsgSize }}" wx:key="item" wx:for-index="idx">
-            <text>{{ mmm }}</text>
-            <block wx:if="{{ idx == 0 }}">
-              <view class='robot-imgmsg'  bindtap='toOtherPage' data-type='toH5' data-url='{{ item.url }}'>
-                <view class='img-content'>
-                  <image src="{{ item.image }}"></image>
-                </view>
-                <view class='text-content'>
-                  <text>{{ item.title }}</text>
-                </view>
-              </view>
-            </block>
-            <block wx:else>
-              <view class='robot-imgmsg-small'>
-                <view class='img-content-small'>
-                  <image src="{{ item.image }}"></image>
-                </view>
-                <view class='text-content-small'>
-                  <text>{{ item.title }}</text>
-                </view>
-              </view>
-              <view class='split-content'></view>             
-            </block>
-          </block>
         </view>
       </view>
-    </block>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="robot-imgtxt-chat">
+      <view class="robot-imgtxtmsg-content">
+        <block wx:for="{{ outputItem.data.imgtxtmsg }}"  data="{{ imgtxtmsgSize }}" wx:key="item" wx:for-index="idx">
+          <block wx:if="{{ idx == 0 }}">
+            <view class='robot-imgmsg' bindtap='toOtherPage' data-type='toH5' data-url='{{ item.url }}'>
+              <view class='img-content'>
+                <image src="{{ item.image }}"></image>
+              </view>
+              <view class='text-content'>
+                <text>{{ item.title }}</text>
+              </view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='robot-imgmsg-small'>
+              <view class='img-content-small'>
+                <image src="{{ item.image }}"></image>
+              </view>
+              <view class='text-content-small'>
+                <text>{{ item.title }}</text>
+              </view>
+            </view>
+            <view class='split-content'></view>
+          </block>
+        </block>
+      </view>
+    </view>
+  </block>
 </template>
 
 
 <template name="relatedQuestion">
-   <block wx:if="{{ item.data.relatedQuestions.length > 1 }}">
+  <block wx:if="{{ item.data.relatedQuestions.length > 1 }}">
     <view class='relatedQuestion'>
-      <view class='relatedQuestion-split'></view> 
+      <view class='relatedQuestion-split'></view>
       <view class='relatedQuestion-title'>
         <text>您可能关注以下问题：</text>
       </view>
       <view class='relatedQuestion-content'>
         <block wx:for="{{ item.data.relatedQuestions }}" wx:key="id" wx:for-index="idx">
           <view class='relatedQuestion-text' wx:if="{{ idx != 0}}">
-            <rich-text  bindtap='relatedQuestion' data-question='{{ item }}'>{{ idx }}、{{ item }}</rich-text>
+            <rich-text bindtap='relatedQuestion' data-question='{{ item }}'>{{ idx }}、{{ item }}</rich-text>
           </view>
         </block>
       </view>
     </view>
-  </block> 
+  </block>
 </template>
 
 <template name="faqvote">
@@ -271,7 +270,7 @@
       <view class='faqvote-content'>
         <view class='solve' bindtap='faqvote' data-item='{{ item.data.faqvote}}' data-content='{{ item.data.faqvote.solve }}' data-idx='{{ index }}' data-option='1'>
           <image src='../../images/faqvote/{{  item.data.faqvote.solve_icon }}'></image>
-           <!-- <text>{{ index }}</text>  -->
+          <!-- <text>{{ index }}</text>  -->
           <rich-text class='solve-text'>解决</rich-text>
         </view>
         <view class='unsolve' bindtap='faqvote' data-item='{{ item.data.faqvote}}' data-content='{{ item.data.faqvote.unsolve }}' data-idx='{{ index }}' data-option='2'>
@@ -280,5 +279,5 @@
         </view>
       </view>
     </view>
-  </block> 
+  </block>
 </template>

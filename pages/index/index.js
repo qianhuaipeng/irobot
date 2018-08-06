@@ -95,6 +95,9 @@ Page({
   },
   sendTextEx: function(){
     var question = this.data.question;
+    if(question == null || question == ''){
+      return
+    }
     this.sendMsg(question, true);
   },
   sendMsg: function(question, showQuestion){
